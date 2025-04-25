@@ -8,7 +8,7 @@ import "./index.css";
 import AOS from 'aos';
 import "aos/dist/aos.css"
 import Headerbg from "./Images/Nepal.jpg"
-import Nepal from "./Nepal.jpg"
+
 import Ai from "./Images/Leonardo_Phoenix_10_A_vibrant_illustration_depicting_a_fusion_3.jpg"
 import ai4 from "./Images/ai4.jpg"
 import Contact from './Contact';
@@ -18,7 +18,7 @@ import Going from "./Images/Going-abroad-Feb16.jpg"
 const HomePage = () => {
   useEffect(() => {
     AOS.init({duration: 1600})
-  })
+  }, []);
  const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -34,12 +34,8 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
-    }
+    window.addEventListener('scroll', controlNavbar);
+    return () => window.removeEventListener('scroll', controlNavbar);
   }, [lastScrollY]);
 
   
