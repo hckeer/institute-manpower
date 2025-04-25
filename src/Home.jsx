@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Logo from "./Images/Logo.jpg"
 import { Link } from 'react-router-dom'
-import Uae from "./Images/Uae.jpg"
+
 import News from "./News"
-import ExampleComponent from './contentssss';
+
 import "./index.css";
 import AOS from 'aos';
 import "aos/dist/aos.css"
-import Headerbg from "./Images/Nepal.jpg"
 
-import Ai from "./Images/Leonardo_Phoenix_10_A_vibrant_illustration_depicting_a_fusion_3.jpg"
 import ai4 from "./Images/ai4.jpg"
 import Contact from './Contact';
 import Driver from "./Images/qatardriver.jpg"
@@ -22,21 +20,21 @@ const HomePage = () => {
  const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlNavbar = () => {
+  const controlNavbar = useCallback(() => {
     if (typeof window !== 'undefined') {
       if (window.scrollY > lastScrollY) {
-        setShowNavbar(false); // scroll down
+        setShowNavbar(false);
       } else {
-        setShowNavbar(true); // scroll up
+        setShowNavbar(true);
       }
       setLastScrollY(window.scrollY);
     }
-  };
+  }, [lastScrollY]);
 
   useEffect(() => {
     window.addEventListener('scroll', controlNavbar);
     return () => window.removeEventListener('scroll', controlNavbar);
-  }, [lastScrollY]);
+  }, [controlNavbar]);
 
   
   return (
